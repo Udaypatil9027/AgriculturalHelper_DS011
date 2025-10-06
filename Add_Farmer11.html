@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Add Farmer - AgriHelp Portal</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" type="text/css" href="resources/css/add_farmer.css">
+</head>
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop id="bgVideo">
+        <source src="resources/bgt_video.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-leaf logo-icon"></i>
+            <h1>AgriHelp Portal</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Admin_Dashboard11.jsp">Dashboard</a></li>
+                <li><a href="Admin_Login11.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <div class="form-card">
+            <div class="form-header">
+                <div class="form-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2>Add New Farmer</h2>
+                <p>Register a new farmer to the AgriHelp platform</p>
+            </div>
+            
+            <form action="Add_Farmer11" method="post" id="farmerForm">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="fname">Farmer Name</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="fname" name="fname" placeholder="Full name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="flocation">Location</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" id="flocation" name="flocation" placeholder="Farm location" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="femail">Email Address</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="femail" name="femail" placeholder="Email address" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fcontact">Contact Number</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-phone"></i>
+                            <input type="text" id="fcontact" name="fcontact" 
+                                   placeholder="Phone number" 
+                                   required 
+                                   pattern="[0-9]{10}" 
+                                   maxlength="10"
+                                   title="Enter a valid 10-digit phone number">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fpass">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="fpass" name="fpass" placeholder="Create password" required onkeyup="checkPasswordStrength()">
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-meter" id="passwordStrength"></div>
+                        </div>
+                        <div class="strength-text" id="passwordStrengthText">Password strength</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-pass">Confirm Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirm-pass" name="confirm-pass" placeholder="Confirm password" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <a href="Admin_Dashboard11.jsp" class="btn-back">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-user-plus"></i> Add Farmer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Password strength indicator (dummy example)
+        function checkPasswordStrength() {
+            const pass = document.getElementById('fpass').value;
+            const strengthBar = document.getElementById('passwordStrength');
+            const strengthText = document.getElementById('passwordStrengthText');
+            let strength = 0;
+
+            if (pass.match(/[a-z]+/)) strength++;
+            if (pass.match(/[A-Z]+/)) strength++;
+            if (pass.match(/[0-9]+/)) strength++;
+            if (pass.match(/[$@#&!]+/)) strength++;
+            if (pass.length >= 8) strength++;
+
+            strengthBar.style.width = (strength * 20) + "%";
+
+            let text = "Weak";
+            if (strength >= 4) text = "Strong";
+            else if (strength === 3) text = "Medium";
+
+            strengthText.innerText = "Password strength: " + text;
+        }
+
+        // Validation before submit
+        document.getElementById('farmerForm').addEventListener('submit', function(e) {
+            const password = document.getElementById('fpass').value;
+            const confirmPassword = document.getElementById('confirm-pass').value;
+            const contact = document.getElementById('fcontact').value;
+
+            // Password confirmation check
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Passwords do not match. Please confirm your password.');
+                document.getElementById('confirm-pass').focus();
+                return;
+            }
+
+            // Contact number check
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(contact)) {
+                e.preventDefault();
+                alert('Please enter a valid 10-digit phone number.');
+                document.getElementById('fcontact').focus();
+            }
+        });
+    </script>
+</body>
+</html>

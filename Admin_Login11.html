@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - AgriHelp Portal</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link CSS -->
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+</head>
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop id="bgVideo">
+        <source src="resources/bgt_video.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-leaf logo-icon"></i>
+            <h1>AgriHelp Portal</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="DevInfo.html">Help/Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <i class="fas fa-user-shield login-icon"></i>
+                <h2>Admin Login Portal</h2>
+                <p>Access the administrative dashboard</p>
+            </div>
+            
+            <form action="Admin_Login11" method="post" class="login-form">
+                <div class="form-group">
+                    <label for="aemail">Admin Email</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="aemail" name="aemail" placeholder="Enter your admin email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="apass">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="apass" name="apass" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
